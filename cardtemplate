@@ -1,0 +1,6 @@
+<div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/br2d.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/br2d.png');"></div>
+            <div class="card-title">Backrooms 2D</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn
