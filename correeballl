@@ -3,18 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Core Ball</title>
-
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
 <style>
 html,body{
 margin:0;
 padding:0;
 height:100%;
-background:#000;
 overflow:hidden;
+background:black;
 }
-
 iframe{
 border:0;
 width:100vw;
@@ -25,7 +21,7 @@ height:100vh;
 
 <body>
 
-<iframe src="https://cdn.jsdelivr.net/gh/randomyang/core-ball@master/index.html"></iframe>
+<iframe src="https://www.crazygames.com/gameframe/core-ball"></iframe>
 
 </body>
 </html>
