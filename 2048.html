@@ -1,0 +1,137 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>2048 Game</title>
+
+<!-- Google tag (gtag.js) -->
+<script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202603030101/show_ads_impl_fy2021.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-BHNQ9CC40B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BHNQ9CC40B');
+</script>
+
+
+  <link href="https://www.2048.org/style/main.css?v=8" rel="stylesheet" type="text/css">
+  <style>
+.score-container:after {
+  content: "Score";
+}
+.best-container:after {
+  content: "Best";
+}
+  </style>
+  <link rel="shortcut icon" href="https://www.2048.org/favicon.ico">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9nrunKdU5m96PSN1XsSGr3qOP0lvPFUB2AiAylCDlN5DTl17uDFkpQuHj1AFtgWLxpLaiBZuhrtb2WOu7ofHwEAAACKeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A93bovR+QVXNx2/38qDbmeYYf1wdte9EO37K9eMq3r+541qo0byhYU899BhPB7Cv9QqD7wIbR1B6OAc9kEfYCA4AAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A1S5fojrAunSDrFbD8OfGmFHdRFZymSM/1ss3G+NEttCLfHkXvlcF6LGLH8Mo5PakLO1sCASXU1/gQf6XGuTBgwAAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><script async="" src="https://fundingchoicesmessages.google.com/i/ca-pub-8644252537816192?href=https%3A%2F%2Fwww.2048.org&amp;ers=2"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxX8mviFCIicjcwezMropZH3NaPku4rcNP8Xa6YVulDHtdVoNHdX1Yq_-qkFDqYY-4GzQFlfYnAqkMITKkVdEFk8V_fJiFkeVuqn2jS1n8RJQsLSMkGjnxPCYpq2rB_9jRy4wOuXXA==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzcyOTA2NTU4LDYwMDAwMDBdLG51bGwsbnVsbCxudWxsLFtudWxsLFs3XV0sImh0dHBzOi8vd3d3LjIwNDgub3JnLyIsbnVsbCxbWzgsImJqcEJZYzhkbFhRIl0sWzksImVuLVVTIl0sWzE5LCIyIl0sWzE3LCJbMF0iXSxbMjQsInd3dy5iaW5nLmNvbSJdLFsyNSwiW1s5NTM3OTgyM11dIl0sWzI5LCJmYWxzZSJdXV0"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxWY8NJuT3ZKUM0Gl2fXmIpUntHhDvCNPCQx6c3-pZvGn2ptB6T-jsIcVHqwbIirAnF3y9euceUmgS0yc_Tu0RZd2e-c3eTnJ8NvSN0sTD5sidjkQ3WDqHjD2D62p-TRbRlX0cDFHw==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzcyOTA2NTU4LDg2MDAwMDAwXSxudWxsLG51bGwsbnVsbCxbbnVsbCxbNyw5XSxudWxsLDIsbnVsbCwiZW4iXSwiaHR0cHM6Ly93d3cuMjA0OC5vcmcvIixudWxsLFtbOCwiYmpwQlljOGRsWFEiXSxbOSwiZW4tVVMiXSxbMTksIjIiXSxbMTcsIlswXSJdLFsyNCwid3d3LmJpbmcuY29tIl0sWzI1LCJbWzk1Mzc5ODIzXV0iXSxbMjksImZhbHNlIl1dXQ"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxUhDRG2nzVTXOJ6LWy9V9pp1c5MvND_fSZGGAL9Kr7cWyx7_sOw0m-hx2vWTQa-xxsDBBcAI2BPbC_lxDpka9z6Q67aSoU32BOqO0gaAoMP2HjgiRe13NNawa2mUdWGh3Jz6NiVKg==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzcyOTA2NTU4LDg0ODAwMDAwMF0sbnVsbCxudWxsLG51bGwsW251bGwsWzcsOSw2XSxudWxsLDIsbnVsbCwiZW4iLG51bGwsbnVsbCxudWxsLG51bGwsbnVsbCwxXSwiaHR0cHM6Ly93d3cuMjA0OC5vcmcvIixudWxsLFtbOCwiYmpwQlljOGRsWFEiXSxbOSwiZW4tVVMiXSxbMTksIjIiXSxbMTcsIlswXSJdLFsyNCwid3d3LmJpbmcuY29tIl0sWzI1LCJbWzk1Mzc5ODIzXV0iXSxbMjksImZhbHNlIl1dXQ"></script></head>
+<body>
+  <div id="accountSnippet" style="float:right; padding-right:20px; text-align:right">[<a href="/memberships/?rm=pre_payment_invitation">Get a membership</a>] [<a href="/memberships/?rm=account">My account</a>]</div>
+<script>
+function beetuxInit(beetuxIsLoggedIn, beetuxIsPremium, beetuxUsername, beetuxUserId) {
+  if (!beetuxIsLoggedIn) {
+    document.getElementById('accountSnippet').innerHTML =
+      "[<a href='/memberships/?rm=pre_payment_invitation'>Get a membership</a>] " +
+      "[<a href='/memberships/?rm=account'>My account</a>]";
+  } else if (!beetuxIsPremium) {
+    document.getElementById('accountSnippet').innerHTML =
+      "Hello, <strong>" + beetuxUsername + "</strong> " +
+      "[<a href='/memberships/?rm=pre_payment_invitation'>Get a membership</a>] " +
+      "[<a href='/memberships/?rm=account'>My account</a>]";
+  } else {
+    document.getElementById('accountSnippet').innerHTML =
+      "Hello, <strong>" + beetuxUsername + "</strong> <span style='color:#fb0;'>&starf;</span> " +
+      "[<a href='/memberships/'>My account</a>]";
+  }
+}
+</script>
+<script defer="" src="/memberships/?rm=get_subscription_status&amp;rand=5567012">
+</script>
+
+  <div class="container">
+    <div class="heading">
+      <p class="title"><img src="https://www.2048.org/logo.png" alt="2048.org"></p>
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+
+    <div class="above-game">
+      <p class="game-intro">Join numbers to get to the <strong>2048 tile</strong>!</p>
+      <a class="restart-button">New Game</a>
+    </div>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button">Keep going</a>
+          <a class="retry-button">Try again</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container"><div class="tile tile-2 tile-position-2-1 tile-new"><div class="tile-inner">2</div></div><div class="tile tile-2 tile-position-3-4 tile-new"><div class="tile-inner">2</div></div></div>
+    </div>
+
+    <p class="game-explanation">
+      <strong class="important"><a href="/strategy-tips/" style="text-decoration:underline;color:blue">How to play 2048:</a></strong>
+      Use <strong>arrow keys</strong> to move the tiles. When two tiles having the same number touch, they <strong>join into one!</strong>
+    </p>
+  </div>
+
+  <div style="text-align:center; margin: 15px auto;">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8644252537816192" crossorigin="anonymous" data-checked-head="true"></script>
+<!-- 2048.org Square -->
+<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-8644252537816192" data-ad-slot="8877681348" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="filled"><div id="aswift_1_host" style="border: none; height: 280px; width: 1200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:1200px;height:280px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1200" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-8644252537816192&amp;output=html&amp;h=280&amp;slotname=8877681348&amp;adk=2679303374&amp;adf=54630664&amp;pi=t.ma~as.8877681348&amp;w=1200&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1772906557&amp;rafmt=1&amp;format=1200x280&amp;url=https%3A%2F%2Fwww.2048.org%2F&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=3&amp;aieuf=1&amp;aicrs=1&amp;uach=WyJXaW5kb3dzIiwiMTkuMC4wIiwieDg2IiwiIiwiMTQ1LjAuMzgwMC44MiIsbnVsbCwwLG51bGwsIjY0IixbWyJOb3Q6QS1CcmFuZCIsIjk5LjAuMC4wIl0sWyJNaWNyb3NvZnQgRWRnZSIsIjE0NS4wLjM4MDAuODIiXSxbIkNocm9taXVtIiwiMTQ1LjAuNzYzMi4xMTciXV0sMF0.&amp;abgtt=6&amp;dt=1772906557198&amp;bpp=1&amp;bdt=233&amp;idt=154&amp;shv=r20260305&amp;mjsv=m202603030101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;prev_fmts=0x0&amp;nras=1&amp;correlator=5102466360856&amp;frm=20&amp;pv=1&amp;u_tz=-360&amp;u_his=2&amp;u_h=768&amp;u_w=1366&amp;u_ah=720&amp;u_aw=1366&amp;u_cd=32&amp;u_sd=1&amp;dmc=8&amp;adx=72&amp;ady=771&amp;biw=1343&amp;bih=636&amp;scr_x=0&amp;scr_y=0&amp;eid=95378429%2C95381339%2C95383700%2C95384716%2C95379823&amp;oid=2&amp;pvsid=69112371804092&amp;tmod=2094583922&amp;uas=0&amp;nvt=1&amp;ref=https%3A%2F%2Fwww.bing.com%2F&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1366%2C0%2C1366%2C720%2C1358%2C636&amp;vis=1&amp;rsz=%7C%7CEebr%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;bz=1.01&amp;ifi=2&amp;uci=a!2&amp;btvi=1&amp;fsb=1&amp;dtd=162" data-google-container-id="a!2" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CLr33syvjpMDFflEwgUdUxs0ZQ" data-load-complete="true"></iframe></div></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<p style="text-align:center"><a title="Czech" href="https://cs.2048.org">CS</a> | <a title="Danish" href="https://da.2048.org">DA</a> | <a title="German" href="https://de.2048.org">DE</a> | <strong>EN</strong> | <a title="Spanish" href="https://es.2048.org">ES</a> | <a title="Estonian" href="https://et.2048.org">ET</a> | <a title="Finnish" href="https://fi.2048.org">FI</a> | <a title="French" href="https://fr.2048.org">FR</a> | <a title="Hindi" href="https://hi.2048.org">HI</a> | <a title="Croatian" href="https://hr.2048.org">HR</a> | <a title="Hungarian" href="https://hu.2048.org">HU</a> | <a title="Indonesian" href="https://id.2048.org">ID</a> | <a title="Icelandic" href="https://is.2048.org">IS</a> | <a title="Italian" href="https://it.2048.org">IT</a> | <a title="Japanese" href="https://ja.2048.org">JA</a> | <a title="Korean" href="https://ko.2048.org">KO</a> | <a title="Lithuanian" href="https://lt.2048.org">LT</a> | <a title="Latvian" href="https://lv.2048.org">LV</a> | <a title="Dutch" href="https://nl.2048.org">NL</a> | <a title="Polish" href="https://pl.2048.org">PL</a> | <a title="Portuguese" href="https://pt.2048.org">PT</a> | <a title="Romanian" href="https://ro.2048.org">RO</a> | <a title="Russian" href="https://ru.2048.org">RU</a> | <a title="Swedish" href="https://sv.2048.org">SV</a> | <a title="Turkish" href="https://tr.2048.org">TR</a></p><div class="otherGames" style="text-align:center;margin: 35px auto 15px;"><div>Play our other popular games:</div><p style="margin:35px 0">
+  <a rel="nofollow" href="//www.futoshiki.com/"><img alt="Futoshiki Logo" src="//www.futoshiki.com/futoshikicom-small.png" style="border:0px;max-width:150px"></a>
+</p>
+<p style="margin:35px 0">
+  <a rel="nofollow" href="//www.kakuros.com/"><img alt="Kakuro Logo" src="//www.kakuros.com/kakuro-small.png" style="border:0px;max-width:150px"></a>
+</p>
+<p style="margin:35px 0">
+  <a rel="nofollow" href="//www.hashi.info/"><img alt="Hashi Logo" src="//www.hashi.info/logo-small.png" style="border:0px;max-width:150px"></a>
+</p>
+</div><p style="text-align:center">©2026 - 2048.org (operated by Beetux Software) - <a href="/privacy/">Privacy Policy</a></p>
+  <script src="https://www.2048.org/minimize-js.cgi"></script>
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-ad-hi="true" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><div id="aswift_0_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-8644252537816192&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;lmt=1772906557&amp;plaf=1%3A2%2C2%3A2%2C7%3A2&amp;plat=1%3A128%2C2%3A128%2C3%3A128%2C4%3A128%2C8%3A128%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fwww.2048.org%2F&amp;pra=5&amp;aiof=9&amp;asro=0&amp;aiapm=0.1542&amp;aiapmd=0.1423&amp;aiapmi=0.16&amp;aiapmid=1&amp;aiact=0.0001&amp;aiactd=0.0001&amp;aicct=0.0001&amp;aicctd=0.0001&amp;ailct=0.0001&amp;ailctd=0.0001&amp;aimart=4&amp;aimartd=4&amp;aieuf=1&amp;aicrs=1&amp;uach=WyJXaW5kb3dzIiwiMTkuMC4wIiwieDg2IiwiIiwiMTQ1LjAuMzgwMC44MiIsbnVsbCwwLG51bGwsIjY0IixbWyJOb3Q6QS1CcmFuZCIsIjk5LjAuMC4wIl0sWyJNaWNyb3NvZnQgRWRnZSIsIjE0NS4wLjM4MDAuODIiXSxbIkNocm9taXVtIiwiMTQ1LjAuNzYzMi4xMTciXV0sMF0.&amp;abgtt=6&amp;dt=1772906557195&amp;bpp=3&amp;bdt=230&amp;idt=125&amp;shv=r20260305&amp;mjsv=m202603030101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;nras=1&amp;correlator=5102466360856&amp;frm=20&amp;pv=2&amp;u_tz=-360&amp;u_his=2&amp;u_h=768&amp;u_w=1366&amp;u_ah=720&amp;u_aw=1366&amp;u_cd=32&amp;u_sd=1&amp;dmc=8&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1343&amp;bih=636&amp;scr_x=0&amp;scr_y=0&amp;eid=95378429%2C95381339%2C95383700%2C95384716%2C95379823&amp;oid=2&amp;pvsid=69112371804092&amp;tmod=2094583922&amp;uas=0&amp;nvt=1&amp;fsapi=1&amp;ref=https%3A%2F%2Fwww.bing.com%2F&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1366%2C0%2C1366%2C720%2C1358%2C636&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=32768&amp;bc=31&amp;bz=1.01&amp;ifi=1&amp;uci=a!1&amp;fsb=1&amp;dtd=150" data-google-container-id="a!1" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true"></iframe></div></ins><iframe name="googlefcPresent" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="__tcfapiLocator" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcInactive" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcLoaded" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20260305/r20190131/zrt_lookup_fy2021.html" style="display: none;"></iframe></html>
