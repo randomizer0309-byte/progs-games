@@ -1,3 +1,7 @@
-requirejs.config({
-	baseUrl : "http://dev.me/h5/core-ball/js"
+require.config({
+    baseUrl: "",
+    paths: {
+        lib: "js/lib",
+        general: "js/general"
+    }
 });
