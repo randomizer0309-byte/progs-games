@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>ProGS Chat</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+#chat{
+height:85vh;
+overflow:auto;
+padding:15px;
+}
+
+#msg{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+font-size:16px;
+background:#222;
+color:white;
+}
+
+.message{
+margin-bottom:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="chat"></div>
+
+<input id="msg" placeholder="Type message and press Enter">
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"https://ziuderugmpqwukekwxth.supabase.co",
+"sb_publishable_PQsAlkFTqqy6UalEAeldtA_r2PllZwl"
+)
+
+let username = prompt("Create a username")
+let password = prompt("Create a password")
+
+await supabase.auth.signInWithPassword({
+email: username + "@chat.com",
+password: password
+}).catch(async ()=>{
+
+await supabase.auth.signUp({
+email: username + "@chat.com",
+password: password
+})
+
+})
+
+const chat = document.getElementById("chat")
+const msg = document.getElementById("msg")
+
+msg.addEventListener("keydown", async (e)=>{
+
+if(e.key === "Enter" && msg.value.trim() !== ""){
+
+await supabase
+.from("messages")
+.insert({
+user: username,
+text: msg.value
+})
+
+msg.value = ""
+
+}
+
+})
+
+supabase
+.channel("chatroom")
+.on(
+"postgres_changes",
+{
+event: "INSERT",
+schema: "public",
+table: "messages"
+},
+(payload)=>{
+
+let m = payload.new
+
+let div = document.createElement("div")
+div.className = "message"
+div.textContent = m.user + ": " + m.text
+
+chat.appendChild(div)
+
+chat.scrollTop = chat.scrollHeight
+
+}
+)
+.subscribe()
+
+</script>
+
+</body>
+</html>
