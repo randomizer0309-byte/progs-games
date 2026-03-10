@@ -1,1 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ProGS Chat</title>
 
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+}
+
+/* LOGIN SCREEN */
+
+#loginScreen{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+}
+
+#loginBox{
+background:#1e1e1e;
+padding:40px;
+border-radius:10px;
+text-align:center;
+width:300px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+outline:none;
+background:#333;
+color:white;
+}
+
+button{
+margin-top:15px;
+padding:10px;
+width:100%;
+border:none;
+background:#4CAF50;
+color:white;
+cursor:pointer;
+}
+
+#createBox{
+display:none;
+}
+
+/* CHAT */
+
+#chatUI{
+display:none;
+height:100vh;
+flex-direction:column;
+}
+
+#topbar{
+background:#222;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+
+#chat{
+flex:1;
+overflow:auto;
+padding:15px;
+}
+
+#msg{
+border:none;
+padding:15px;
+background:#222;
+color:white;
+outline:none;
+width:100%;
+}
+
+.message{
+margin-bottom:8px;
+}
+
+.system{
+color:#888;
+font-style:italic;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginScreen">
+
+<div id="loginBox">
+
+<h2>Chat Login</h2>
+
+<div id="loginBoxInner">
+
+<input id="pinInput" placeholder="Enter your PIN">
+
+<button onclick="login()">Login</button>
+
+<button onclick="showCreate()">Create Account</button>
+
+</div>
+
+<div id="createBox">
+
+<input id="newUser" placeholder="Username">
+
+<input id="newPin" placeholder="4-6 digit PIN">
+
+<button onclick="createAccount()">Create</button>
+
+<button onclick="showLogin()">Back</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CHAT -->
+
+<div id="chatUI">
+
+<div id="topbar">
+<span id="userDisplay"></span>
+<span id="onlineCount">0 online</span>
+</div>
+
+<div id="chat"></div>
+
+<input id="msg" placeholder="Type message and press Enter">
+
+</div>
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"https://ziuderugmpqwukekwxth.supabase.co",
+"sb_publishable_PQsAlkFTqqy6UalEAeldtA_r2PllZwl"
+)
+
+let username = null
+
+function showCreate(){
+document.getElementById("loginBoxInner").style.display="none"
+document.getElementById("createBox").style.display="block"
+}
+
+function showLogin(){
+document.getElementById("createBox").style.display="none"
+document.getElementById("loginBoxInner").style.display="block"
+}
+
+window.showCreate = showCreate
+window.showLogin = showLogin
+
+/* LOGIN */
+
+async function login(){
+
+let pin = document.getElementById("pinInput").value
+
+let {data} = await supabase
+.from("users")
+.select("*")
+.eq("pin",pin)
+
+if(data.length==0){
+
+alert("Invalid PIN")
+
+}else{
+
+username = data[0].username
+startChat()
+
+}
+
+}
+
+window.login = login
+
+/* CREATE ACCOUNT */
+
+async function createAccount(){
+
+let name = document.getElementById("newUser").value
+let pin = document.getElementById("newPin").value
+
+if(!/^[0-9]{4,6}$/.test(pin)){
+alert("PIN must be 4-6 digits")
+return
+}
+
+let {data:check} = await supabase
+.from("users")
+.select("*")
+.eq("pin",pin)
+
+if(check.length>0){
+alert("PIN already used")
+return
+}
+
+await supabase
+.from("users")
+.insert({
+username:name,
+pin:pin
+})
+
+alert("Account created")
+
+showLogin()
+
+}
+
+window.createAccount = createAccount
+
+/* START CHAT */
+
+function startChat(){
+
+document.getElementById("loginScreen").style.display="none"
+document.getElementById("chatUI").style.display="flex"
+
+document.getElementById("userDisplay").textContent="User: "+username
+
+}
+
+const chat = document.getElementById("chat")
+const msg = document.getElementById("msg")
+
+msg.addEventListener("keydown", async e => {
+
+if(e.key==="Enter" && msg.value.trim()!=""){
+
+await supabase
+.from("messages")
+.insert({
+user:username,
+text:msg.value
+})
+
+msg.value=""
+
+}
+
+})
+
+function getColor(name){
+
+let colors=["#ff6b6b","#6bc1ff","#6bff95","#ffb36b","#d56bff","#ffe66b"]
+
+let hash=0
+
+for(let i=0;i<name.length;i++){
+hash=name.charCodeAt(i)+((hash<<5)-hash)
+}
+
+return colors[Math.abs(hash)%colors.length]
+
+}
+
+/* LIVE MESSAGES */
+
+supabase
+.channel("chat")
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"messages"
+},
+payload=>{
+
+let m = payload.new
+
+let div=document.createElement("div")
+div.className="message"
+
+let color=getColor(m.user)
+
+div.innerHTML="<span style='color:"+color+"'>"+m.user+"</span>: "+m.text
+
+chat.appendChild(div)
+
+chat.scrollTop=chat.scrollHeight
+
+}
+)
+.subscribe()
+
+</script>
+
+</body>
+</html>
