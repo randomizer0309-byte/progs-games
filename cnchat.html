@@ -1,0 +1,316 @@
+<html>
+<head>
+<title>CN Chat</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+#topbar{
+background:#222;
+padding:10px;
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+#chat{
+height:78vh;
+overflow:auto;
+padding:15px;
+}
+
+#msg{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+background:#222;
+color:white;
+}
+
+.message{
+margin-bottom:8px;
+}
+
+.system{
+color:#888;
+font-style:italic;
+margin-bottom:8px;
+}
+
+#typing{
+color:#aaa;
+font-size:13px;
+padding-left:10px;
+}
+
+button{
+background:#444;
+color:white;
+border:none;
+padding:6px 10px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="topbar">
+<span id="username"></span>
+<span id="online">0 online</span>
+<button onclick="changeName()">Change Name</button>
+</div>
+
+<div id="chat"></div>
+
+<div id="typing"></div>
+
+<input id="msg" placeholder="Type message and press Enter">
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+"https://ziuderugmpqwukekwxth.supabase.co",
+"sb_publishable_PQsAlkFTqqy6UalEAeldtA_r2PllZwl"
+)
+
+let username=null
+
+function getColor(name){
+
+let colors=[
+"#ff6b6b",
+"#6bc1ff",
+"#6bff95",
+"#ffb36b",
+"#d56bff",
+"#ffe66b",
+"#ff6bd6"
+]
+
+let hash=0
+
+for(let i=0;i<name.length;i++){
+hash=name.charCodeAt(i)+((hash<<5)-hash)
+}
+
+return colors[Math.abs(hash)%colors.length]
+
+}
+
+const chat=document.getElementById("chat")
+const msg=document.getElementById("msg")
+const typingDiv=document.getElementById("typing")
+
+function systemMessage(text){
+
+let div=document.createElement("div")
+div.className="system"
+div.textContent=text
+chat.appendChild(div)
+
+chat.scrollTop=chat.scrollHeight
+
+}
+
+async function chooseName(){
+
+while(true){
+
+let name=prompt("Choose a username")
+
+if(!name) continue
+
+let {data}=await supabase
+.from("users_online")
+.select("name")
+.eq("name",name)
+
+if(data.length>0){
+
+alert("Username already in use")
+
+}else{
+
+username=name
+
+await supabase
+.from("users_online")
+.insert({
+name:username,
+last_seen:new Date(),
+typing:false
+})
+
+document.getElementById("username").textContent="User: "+username
+
+systemMessage(username+" joined the chat")
+
+break
+
+}
+
+}
+
+}
+
+await chooseName()
+
+async function changeName(){
+
+while(true){
+
+let newName=prompt("New username")
+
+if(!newName) return
+
+let {data}=await supabase
+.from("users_online")
+.select("name")
+.eq("name",newName)
+
+if(data.length>0){
+
+alert("Username already in use")
+
+}else{
+
+await supabase
+.from("users_online")
+.update({name:newName})
+.eq("name",username)
+
+systemMessage(username+" changed name to "+newName)
+
+username=newName
+
+document.getElementById("username").textContent="User: "+username
+
+break
+
+}
+
+}
+
+}
+
+window.changeName=changeName
+
+msg.addEventListener("input",async()=>{
+
+await supabase
+.from("users_online")
+.update({typing:true})
+.eq("name",username)
+
+})
+
+msg.addEventListener("keydown",async e=>{
+
+if(e.key==="Enter" && msg.value.trim()!=""){
+
+await supabase
+.from("messages")
+.insert({
+user:username,
+text:msg.value
+})
+
+await supabase
+.from("users_online")
+.update({typing:false})
+.eq("name",username)
+
+msg.value=""
+
+}
+
+})
+
+setInterval(async()=>{
+
+await supabase
+.from("users_online")
+.update({last_seen:new Date()})
+.eq("name",username)
+
+},5000)
+
+async function updateOnline(){
+
+let cutoff=new Date(Date.now()-30000)
+
+let {data}=await supabase
+.from("users_online")
+.select("*")
+.gt("last_seen",cutoff)
+
+document.getElementById("online").textContent=data.length+" online"
+
+let typingUsers=data.filter(u=>u.typing && u.name!==username)
+
+if(typingUsers.length>0){
+
+typingDiv.textContent=typingUsers[0].name+" is typing..."
+
+}else{
+
+typingDiv.textContent=""
+
+}
+
+}
+
+setInterval(updateOnline,2000)
+
+supabase
+.channel("chatroom")
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"messages"
+},
+payload=>{
+
+let m=payload.new
+
+let div=document.createElement("div")
+div.className="message"
+
+let color=getColor(m.user)
+
+div.innerHTML="<span style='color:"+color+"'>"+m.user+"</span>: "+m.text
+
+chat.appendChild(div)
+
+chat.scrollTop=chat.scrollHeight
+
+}
+)
+.subscribe()
+
+window.addEventListener("beforeunload",async()=>{
+
+await supabase
+.from("users_online")
+.delete()
+.eq("name",username)
+
+})
+
+</script>
+
+</body>
+</html>
