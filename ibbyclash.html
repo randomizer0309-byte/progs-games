@@ -1,0 +1,14 @@
+<html><head></head><body><div id="game-container"><script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        player.style.width = "800px";
+        player.style.height = "600px";
+        const container = document.getElementById("game-container");
+        container.appendChild(player);
+        player.ruffle().load("https://bestofgooglesites.com/flash/whack-the-thief.swf");
+    });
+</script>
+<ruffle-player style="width: 800px; height: 600px;"></ruffle-player></div>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script></body></html>
