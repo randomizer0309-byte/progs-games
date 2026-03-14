@@ -1,0 +1,111 @@
+<html lang="en"><head><title>Play Paper IO Game Online !</title><meta charset="utf-8"><meta name="robots" content="noindex, nofollow, noodp, noydir"><meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=no, minimal-ui"><meta http-equiv="X-UA-Compatible" content="requiresActiveX=true,IE=Edge,chrome=1"><meta http-equiv="Content-Language" content="en-US"><style>* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+ }
+
+ html,
+ body {
+ background-color: rgba(0, 0, 0, 0.4);
+ }</style></head><body id="run_IFRAME_HTML"><style>.before-playing {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #16181e;
+ }
+
+ .blur-background {
+ background-image: url('/data/image/game/paper-io-game.jpg');
+ background-repeat: no-repeat;
+ position: absolute;
+ background-size: cover;
+ background-position: 50%;
+ filter: blur(12px);
+ opacity: .7;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1;
+ }
+
+ .preload-before-playing {
+ padding: 20px 30px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ flex-direction: column;
+ width: 100%;
+ height: 100%;
+ box-sizing: border-box;
+ max-width: 800px;
+ margin: 0 auto;
+ }
+
+ .image-thumbnail-playing img {
+ border-radius: 8px;
+ -webkit-box-shadow: 0 0 2px 0 #fff;
+ box-shadow: 0 0 2px 0 #fff;
+ }
+
+ .title-game-playing span {
+ min-width: 160px;
+ border-radius: 16px;
+ background: #ffcf00;
+ text-transform: uppercase;
+ box-shadow: 0 0 2px 0 #fff;
+ padding: 12px 30px;
+ margin-top: 20px;
+ cursor: pointer;
+ color: #333;
+ text-align: center;
+ display: block;
+ font-size: 24px;
+ font-weight: bold;
+ letter-spacing: 1px;
+ transition: .2s;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .title-game-playing span::before {
+ content: "";
+ position: absolute;
+ height: 30px;
+ left: 50%;
+ width: 50px;
+ transform: translateX(-50%);
+ top: 56px;
+ z-index: 0;
+ border-radius: 10px;
+ background-color: #333;
+ }
+
+ .title-game-playing span:hover {
+ background-color: #ffd728;
+ transform: scale(1.075);
+ }</style><script>async function start_game_frame() {
+ //let frame_game = '<iframe id="iframehtml5" width="100%" height="100%" src="https://paperio.site/" frameborder="0" border="0" scrolling="no" class="iframe-default" allowfullscreen></iframe>';
+ let frame_game = document.createElement('iframe');
+ frame_game.setAttribute('id', 'iframehtml5');
+ frame_game.setAttribute('width', '100%');
+ frame_game.setAttribute('height', '100%');
+ frame_game.setAttribute('frameborder', '0');
+ frame_game.setAttribute('border', '0');
+ frame_game.setAttribute('scrolling', 'no');
+ frame_game.setAttribute('class', 'iframe-default');
+ frame_game.setAttribute('allowfullscreen', 'true');
+ frame_game.setAttribute('src', 'https://paperio.site/');
+ if (document.getElementById("preloading-game")) {
+ await document.getElementById("preloading-game").remove();
+ }
+ document.body.append(frame_game);
+ frame_game.focus();
+ }</script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;aa111720f6c24d3195220c20444206a3&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+<iframe id="iframehtml5" width="100%" height="100%" frameborder="0" border="0" scrolling="no" class="iframe-default" allowfullscreen="true" src="https://paperio.site/"></iframe></body></html>
