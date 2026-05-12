@@ -1,0 +1,1299 @@
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Comic Sans MS",cursive;
+}
+
+:root{
+    --bubble:#ff9f43;
+    --bubble2:#ffbe73;
+    --bubble3:#ffd9a8;
+    --dark:#cc6c1c;
+
+    --bg1:#ffe0b8;
+    --bg2:#ffc277;
+    --bg3:#ff9f43;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+    background-attachment:fixed;
+    color:#4a2a12;
+}
+
+.topbar{
+    max-width:1200px;
+    margin:16px auto 0;
+    padding:16px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#fff;
+    border-radius:26px;
+
+    box-shadow:
+        0 6px 0 var(--dark),
+        0 14px 25px rgba(0,0,0,.18);
+}
+
+#search{
+    flex:1;
+    padding:12px 14px;
+
+    border-radius:16px;
+    border:3px solid var(--bubble);
+
+    background:#fff;
+    font-size:15px;
+}
+
+#search:focus{
+    outline:none;
+    border-color:var(--dark);
+}
+
+#counterBox{
+    padding:10px 16px;
+    border-radius:16px;
+
+    background:linear-gradient(to right,var(--bubble2),var(--bubble));
+
+    color:#fff;
+    font-weight:bold;
+
+    box-shadow:0 4px 0 var(--dark);
+}
+
+.grid{
+    max-width:1200px;
+    margin:auto;
+    padding:18px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    gap:18px;
+}
+
+.card{
+    cursor:pointer;
+    overflow:hidden;
+
+    border-radius:26px;
+    border:4px solid var(--bubble);
+
+    background:#fff;
+
+    transition:.15s;
+
+    box-shadow:
+        0 6px 0 var(--dark),
+        0 14px 24px rgba(0,0,0,.18);
+}
+
+.card:hover{
+    transform:translateY(-6px) scale(1.05);
+
+    box-shadow:
+        0 10px 0 var(--dark),
+        0 22px 30px rgba(0,0,0,.25);
+}
+
+.thumb{
+    width:100%;
+    padding-top:100%;
+
+    background-size:cover;
+    background-position:center;
+}
+
+.card-title{
+    padding:10px 6px;
+
+    text-align:center;
+    font-size:14px;
+    font-weight:bold;
+
+    color:#4a2a12;
+
+    background:linear-gradient(to right,var(--bubble2),var(--bubble));
+    border-top:3px solid var(--dark);
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.card.hide{
+    display:none;
+}
+</style>
+
+<div class="grid" id="grid">
+
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/1.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/1.png');"></div>
+            <div class="card-title">1</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/1soccer.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/1soccer.png');">
+            </div>
+            <div class="card-title">1 on 1 Soccer</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/1tennis.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/1tennis.png');">
+            </div>
+            <div class="card-title">1 on 1 Tennis</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/1v1.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/1v1.png');"></div>
+            <div class="card-title">1v1.LOL</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/248.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/unnamed.png');"></div>
+            <div class="card-title">2048</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/60santa.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/60santa.png');">
+            </div>
+            <div class="card-title">60s Santa Run</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/60sec.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/60sec.png');"></div>
+            <div class="card-title">60s Burger Run</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/8ballpool.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/8ballpool.png');">
+            </div>
+            <div class="card-title">8 Ball Pool</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/achunlocked.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/achunlocked.png');">
+            </div>
+            <div class="card-title">Achievement Unlocked</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/achunlocked2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/achunlocked2.png');">
+            </div>
+            <div class="card-title">Achievement Unlocked 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/achunlocked3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/achunlocked3.png');">
+            </div>
+            <div class="card-title">Achievement Unlocked 3</div>
+        </div>
+<div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/agario.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/agar-io.png');"></div>
+            <div class="card-title">Agar.io</div>
+        </div>
+         
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/450.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/amandathead.png');"></div>
+            <div class="card-title">Amanda the Adventurer</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/amongus.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/amongus.png');">
+            </div>
+            <div class="card-title">Among Us</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/angrybird.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/angrybird.png');">
+            </div>
+            <div class="card-title">Angry Bird</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/aquapark.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/aquapark.png');">
+            </div>
+            <div class="card-title">Aquapark.io</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/aswc.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/aswc.png');"></div>
+            <div class="card-title">A Small World Cup</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/backrooms.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/backrooms.png');">
+            </div>
+            <div class="card-title">Backrooms</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/baconmay.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/baconmay.png');">
+            </div>
+            <div class="card-title">Bacon May Die</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/badicecream.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/badicecream.png');">
+            </div>
+            <div class="card-title">Bad Ice Cream</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/badicecream2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/badicecream2.png');">
+            </div>
+            <div class="card-title">Bad Ice Cream 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/badicecream3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/badicecream3.png');">
+            </div>
+            <div class="card-title">Bad Ice Cream 3</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/baldi.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/baldi.png');"></div>
+            <div class="card-title">Baldi's Basic</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/bill')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/logo-ball-blast.png');"></div>
+            <div class="card-title">Ball Blast</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bankrobbery.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bankrobbery.png');">
+            </div>
+            <div class="card-title">Bank Robbery 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/baseballbros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/baseballbros.png');">
+            </div>
+            <div class="card-title">Baseball Bros</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/basketballstars.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/basketballstars.png');"></div>
+            <div class="card-title">Basketball Stars</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/basketbros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/basketbros.png');">
+            </div>
+            <div class="card-title">Basket Bros</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/basketrandom.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/basketrandom.png');">
+            </div>
+            <div class="card-title">Basket Random</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/215.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bendys.png');"></div>
+            <div class="card-title">Bendy and the Ink Machine</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bitlife.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bitlife.png');">
+            </div>
+            <div class="card-title">BitLife</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bitplanes.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bitplanes.png');">
+            </div>
+            <div class="card-title">Bitplane</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/blackjack.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/blackjack.png');">
+            </div>
+            <div class="card-title">Blackjack</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/blockblast.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/blockblast.png');">
+            </div>
+            <div class="card-title">Block Blast</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bloxorz.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bloxorz.png');">
+            </div>
+            <div class="card-title">Bloxorz</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bob.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bob.png');"></div>
+            <div class="card-title">Bob The Robber</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/bottle')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/8901616-bottle-flip-3d-iphone-front-cover.jpg ');"></div>
+            <div class="card-title">Bottle Flip 3D</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bowmaster.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bowmaster.png');">
+            </div>
+            <div class="card-title">Bowmaster</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/boxingrandom.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/boxingrandom.png');">
+            </div>
+            <div class="card-title">Boxing Random</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/brawlstars.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/brawlstars.png');">
+            </div>
+            <div class="card-title">Brawl Stars</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/btd1.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/btd1.png');"></div>
+            <div class="card-title">Bloons TD 1</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/bubbleshooter.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/bubbleshooter.png');"></div>
+            <div class="card-title">Bubble Shooter</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/205-f.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/buckshotroulette.png');"></div>
+            <div class="card-title">Buckshot Roulette</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/burritobison.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/burritobison.png');">
+            </div>
+            <div class="card-title">Burrito Bison</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/callofbtl')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/OIP (2).webp');"></div>
+            <div class="card-title">Call of Battle</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/capybaraclicker.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/capybaraclicker.png');"></div>
+            <div class="card-title">Capybara Clicker</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/carcrash.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/OIP (1).webp');">
+            </div>
+            <div class="card-title">Car Crash</div>
+        </div>
+         
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/cct2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/ChatGPT Image Mar 14, 2026, 12_57_54 AM.png');">
+            </div>
+            <div class="card-title">Car Crash 2</div>
+        </div>
+ 
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/cct3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/ChatGPT Image Mar 14, 2026, 12_54_11 AM.png');">
+            </div>
+            <div class="card-title">Car Crash 3</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/cardrawing.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/cardrawing.png');">
+            </div>
+            <div class="card-title">Car Drawing</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/carkingsarena.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/carkingsarena.png');"></div>
+            <div class="card-title">Car Kings Arena</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/cellmachine.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/cellmachine.png');">
+            </div>
+            <div class="card-title">Cell Machine</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/chess.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/chess.png');"></div>
+            <div class="card-title">Chess</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/Chicken Nugget Clicker')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/cncs.webp');"></div>
+            <div class="card-title">Chicken Nugget Clicker</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/chickenwars.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/chickenwar.png');">
+            </div>
+            <div class="card-title">Chicken War</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/choppyorc.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/choppyorc.png');">
+            </div>
+            <div class="card-title">Choppy Orc</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/clusterrush.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/clusterrush.png');">
+            </div>
+            <div class="card-title">Cluster Rush</div>
+        </div>
+
+<div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/clashroyale.html')">
+    <div class="thumb" style="background-image:url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8e/dd/3a/8edd3a1a-99e8-3519-0fbb-9a8ec766cd4c/AppIcon-0-0-1x_U007emarketing-0-6-0-85-220.png/246x0w.webp');"></div>
+    <div class="card-title">Clash Royale</div>
+</div>
+   
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/ccl.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/cookieclicker.png');"></div>
+            <div class="card-title">Cookie Clicker</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/ibbyclass.html ')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/a1078285656_10.jpg');"></div>
+            <div class="card-title">Core Ball</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/crazycattle.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/crazycattle.png');">
+            </div>
+            <div class="card-title">Crazy Cattle 3D</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/crazyc.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/crazyc.png');"></div>
+            <div class="card-title">Crazy Crash</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/crossyroad.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/crossyroad.png');">
+            </div>
+            <div class="card-title">Crossy Road</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/cs16.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/cs16.png');"></div>
+            <div class="card-title">CS 1.6</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/csgoclicker.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/csgoclicker.png');">
+            </div>
+            <div class="card-title">CS:GO Clicker</div>
+        </div>
+                
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/cuttherope.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/cuttherope.png');">
+            </div>
+            <div class="card-title">Cut The Rope</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/deathchase.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/deathchase.png');">
+            </div>
+            <div class="card-title">Death Chase</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/deepestsword.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/deepestsword.png');">
+            </div>
+            <div class="card-title">Deepest Sword</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/defendyournuts.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/defendyournuts.png');"></div>
+            <div class="card-title">Defend Your Nuts</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/digtochina.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/digtochina.png');">
+            </div>
+            <div class="card-title">Dig To China</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/dogeminer.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/dogeminer.png');">
+            </div>
+            <div class="card-title">Doge Miner</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/dogeminer2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/dogeminer2.png');">
+            </div>
+            <div class="card-title">Doge Miner 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/doodlejump.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/doodlejump.png');">
+            </div>
+            <div class="card-title">Doodle Jump</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/drawclimber.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/drawclimber.png');">
+            </div>
+            <div class="card-title">Draw Climber</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/driftboss.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/driftboss.png');">
+            </div>
+            <div class="card-title">Drift Boss</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/drifthunters.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/drifthunters.png');">
+            </div>
+            <div class="card-title">Drift Hunters</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/driveinrussia.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/driveinrussia.png');"></div>
+            <div class="card-title">Drive in Russia</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/drivemad.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/drivemad.png');">
+            </div>
+            <div class="card-title">Drive Mad</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ducklife.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ducklife.png');">
+            </div>
+            <div class="card-title">Duck Life</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ducklife2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ducklife2.png');">
+            </div>
+            <div class="card-title">Duck Life 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ducklife3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ducklife3.png');">
+            </div>
+            <div class="card-title">Duck Life 3</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ducklife5.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ducklife5.png');">
+            </div>
+            <div class="card-title">Duck Life 5</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/eagleride.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/eagleride.png');">
+            </div>
+            <div class="card-title">Eagle Ride</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/edycarsim.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/edycarsim.png');">
+            </div>
+            <div class="card-title">Edy's Car Simulator</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/eggy.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/eggy.png');"></div>
+            <div class="card-title">Eggy car</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/elasticface.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/elasticface.png');">
+            </div>
+            <div class="card-title">Elastic Face</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/esc.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/esc.png');"></div>
+            <div class="card-title">Escape Road</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/evilglitch.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/evilglitch.png');">
+            </div>
+            <div class="card-title">Evil Glitch</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/esss')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/Extreme-Real-Car-Driving-2025.webp');"></div>
+            <div class="card-title">Extreme Swerving</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/find.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/find.png ');"></div>
+            <div class="card-title">Find The Big Macs</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/flappybird.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/flappybird.png');">
+            </div>
+            <div class="card-title">Flappy Bird</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/710-fix.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/fnae.png');"></div>
+            <div class="card-title">FNAE</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/fnaf2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/fnaf2.png');"></div>
+            <div class="card-title">FNAF 2</div>
+        </div>
+
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/footballbros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/footballbros.png');">
+            </div>
+            <div class="card-title">Football Bros</div>
+        </div>
+
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/frugger')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/deersboy.jpg');"></div>
+            <div class="card-title">Frogger</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/funnymadracing.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/funnymadracing.png');"></div>
+            <div class="card-title">Funny Mad Racing</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/funnyshooter2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/funnyshooter2.png');"></div>
+            <div class="card-title">Funny Shooter 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/gdash.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/gdash.png');"></div>
+            <div class="card-title">Geometry Dash</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/getawayshootout.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/getawayshootout.png');"></div>
+            <div class="card-title">Getaway Shootout</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/gladihoppers.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/gladihoppers.png');">
+            </div>
+            <div class="card-title">Gladihoppers</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/golforbit.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/golforbit.png');">
+            </div>
+            <div class="card-title">Golf Orbit</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/googlebaseball.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/googlebaseball.png');"></div>
+            <div class="card-title">Google Baseball</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/googledino.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/googledino.png');">
+            </div>
+            <div class="card-title">Google Dino</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/granny.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/granny.png');"></div>
+            <div class="card-title">Granny</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/granny2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/granny2.png');">
+            </div>
+            <div class="card-title">Granny 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/granny3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/granny3.png');">
+            </div>
+            <div class="card-title">Granny 3</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/grannyonline.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/grannyonline.png');">
+            </div>
+            <div class="card-title">Granny Online</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/gravity.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/gravity.png');">
+            </div>
+            <div class="card-title">Gravity</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/growagarden.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/growagarden.png');">
+            </div>
+            <div class="card-title">Grow a Garden</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/gunspin.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/gunspin.png');">
+            </div>
+            <div class="card-title">Gun Spin</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/helixjump.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/helixjump.png');">
+            </div>
+            <div class="card-title">Helix Jump</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/hobo.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/hobo.png');"></div>
+            <div class="card-title">Hobo</div>
+        </div>
+
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/hyppersandbox.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/hyppersandbox.png');"></div>
+            <div class="card-title">Hypper Sandbox</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/idlebreakout.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/idlebreakout.png');">
+            </div>
+            <div class="card-title">Idle Breakout</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/impossiblequiz.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/impossiblequiz.png');"></div>
+            <div class="card-title">Impossible Quiz</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/craft')">
+<div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/infinite-craft-button-1716934570048.jpg');"></div>
+<div class="card-title">Infinite Craft</div>
+</div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/705-fix.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ironlung.png');">
+            </div>
+            <div class="card-title">Iron Lung</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/jellydrift.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/jellydrift.png');">
+            </div>
+            <div class="card-title">Jelly Drift</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/jetpackjoyride.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/jetpackjoyride.png');"></div>
+            <div class="card-title">Jetpack Joyride</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/johnnytrigger.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/johnnytrigger.png');"></div>
+            <div class="card-title">Johnny Trigger</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/justfalllol.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/justfalllol.png');">
+            </div>
+            <div class="card-title">Just Fall.lol</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/kartbro.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/kartbro.png');">
+            </div>
+            <div class="card-title">Kart Bros</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/learntofly.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/learntofly.png');">
+            </div>
+            <div class="card-title">Learn to Fly</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/learntofly2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/learntofly2.png');">
+            </div>
+            <div class="card-title">Learn to Fly 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/learntofly3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/learntofly3.png');">
+            </div>
+            <div class="card-title">Learn to Fly 3</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/leveldevil.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/leveldevil.png');">
+            </div>
+            <div class="card-title">Level Devil</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/linerider.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/linerider.png');">
+            </div>
+            <div class="card-title">Line Rider</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/ms')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/msng.png');"></div>
+            <div class="card-title">Mad Stick</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/msic.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/makesureitsclosed.png');"></div>
+            <div class="card-title">Make Sure It's Closed</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/mc188.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/mc188.png');"></div>
+            <div class="card-title">Minecraft 1.8.8</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/mc112.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/mc112.png');"></div>
+            <div class="card-title">Minecraft 1.12</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/melonplayground.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/melonplayground.png');"></div>
+            <div class="card-title">Melon Playground</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/momimsleeping.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/momimsleeping.png');"></div>
+            <div class="card-title">Mom I'm Sleeping</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/monkeymart.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/monkeymart.png');">
+            </div>
+            <div class="card-title">Monkey Mart</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/monstertrack.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/monstertrack.png');">
+            </div>
+            <div class="card-title">Monster Track</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/motox3m.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/motox3m.png');">
+            </div>
+            <div class="card-title">Moto X3M</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/noobminer.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/noobminer.png');">
+            </div>
+            <div class="card-title">Noob Miner</div>
+        </div>
+                
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ovo.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ovo.png');"></div>
+            <div class="card-title">Ovo</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ovo2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ovo2.png');"></div>
+            <div class="card-title">Ovo 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/p3opleplaygr0und.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/p3opleplaygr0und.png');"></div>
+            <div class="card-title">P3ople Playground</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/parkingfury.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/parkingfury.png');">
+            </div>
+            <div class="card-title">Parking Fury</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/penkicks.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/penkicks.png');">
+            </div>
+            <div class="card-title">Penalty Kicks</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/phasma.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/phasma.png');"></div>
+            <div class="card-title">Phasma</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/pixelcombat2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/pixelcombat2.png');">
+            </div>
+            <div class="card-title">Pixel Combat 2</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/donutpapa')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/papas-donuteria.jpg');">
+            </div>
+            <div class="card-title">Papa's Donuteria</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/hotpapa')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/Papa-Hot-Doggeria.jpg');">
+            </div>
+            <div class="card-title">Papa's Hot Doggeria</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/pizzapapa.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/Screenshot%202026-03-15%20001638.png');">
+            </div>
+            <div class="card-title">Papa's Pizzaeria</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/papasushi')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/cfd5ae6652950cfeb5b4cc0ffe41ed81.jpg');">
+            </div>
+            <div class="card-title">Papa's Sushiria</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/plantsvszombies.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/plantsvszombies.png');"></div>
+            <div class="card-title">Plants vs Zombies</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/pumpkinrun64.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/pumpkinrun64.png');">
+            </div>
+            <div class="card-title">Pumpkin Run 64</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ragdollarchers.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ragdollarchers.png');"></div>
+            <div class="card-title">Ragdoll Archers</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/ragdollsoccer.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/ragdollsoccer.png');"></div>
+            <div class="card-title">Ragdoll Soccer</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/recoil.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/recoil.png');"></div>
+            <div class="card-title">Recoil</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/redball4.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/redball4.png');">
+            </div>
+            <div class="card-title">Red Ball 4</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/retrobowl.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/retrobowl.png');">
+            </div>
+            <div class="card-title">Retro Bowl</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/rocketleague.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/rocketleague.png');">
+            </div>
+            <div class="card-title">Rocket League</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/rocketsoccerderby.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/rocketsoccerderby.png');"></div>
+            <div class="card-title">Rocket Soccer Derby</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/rooftopsniper.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/rooftopsniper.png');"></div>
+            <div class="card-title">Rooftop Sniper</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/rooftopsniper2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/rooftopsniper2.png');"></div>
+            <div class="card-title">Rooftop Sniper 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/run3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/run3.png');"></div>
+            <div class="card-title">Run 3</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/sausageflip.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/sausageflip.png');">
+            </div>
+            <div class="card-title">Sausage Flip</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/gn-math/html/605-e.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/schoolboy.png');"></div>
+            <div class="card-title">Schoolboy Runaway</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/skibiditoiletio.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/skibiditoiletio.png');"></div>
+            <div class="card-title">Skibidi Toilet.io</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/slitherio.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/slitherio.png');">
+            </div>
+            <div class="card-title">Slither.io</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/slope.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/slope.png');"></div>
+            <div class="card-title">Slope</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/slope2player.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/slope2.png');">
+            </div>
+            <div class="card-title">Slope 2 Player</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/slowroads.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/slowroads.png');">
+            </div>
+            <div class="card-title">Slow Roads</div>
+        </div>
+                
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/snowballio.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/snowballio.png');">
+            </div>
+            <div class="card-title">Snowball.io</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/snowrider3d.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/snowrider3d.png');">
+            </div>
+            <div class="card-title">Snow Rider 3D</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/soccerbros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/soccerbros.png');">
+            </div>
+            <div class="card-title">Soccer Bros</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/soccerrandom.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/soccerrandom.png');">
+            </div>
+            <div class="card-title">Soccer Random</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/sprunki.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/sprunki.png');">
+            </div>
+            <div class="card-title">Sprunki</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/squidplayground.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/squidplayground.png');"></div>
+            <div class="card-title">Squid Playground</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/stateio.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/stateio.png');">
+            </div>
+            <div class="card-title">State.io</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/stealabrainrot.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/stealabrainrot.png');"></div>
+            <div class="card-title">Steal a Brainrot</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/stickmanhook.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/stickmanhook.png');">
+            </div>
+            <div class="card-title">Stickman Hook</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/subwaysurfers.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/subwaysurfers.png');"></div>
+            <div class="card-title">Subway Surfers</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/suika.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/suika.png');"></div>
+            <div class="card-title">Suika</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/superhot.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/superhot.png');">
+            </div>
+            <div class="card-title">Superhot</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/supermario64.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/supermario64.png');">
+            </div>
+            <div class="card-title">Super Mario 64</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/supermariobros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/supermariobros.png');"></div>
+            <div class="card-title">Super Mario Bros</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/tag.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/tag.png');"></div>
+            <div class="card-title">Tag</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/tanukisunset.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/tanukisunset.png');">
+            </div>
+            <div class="card-title">Tanuki Sunset</div>
+        </div>
+
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/templerun2.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/templerun2.png');">
+            </div>
+            <div class="card-title">Temple Run 2</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/themanfromthewindow.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/themanfromthewindow.png');"></div>
+            <div class="card-title">The Man From The Window</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/thereisnogame.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/thereisnogame.png');"></div>
+            <div class="card-title">There Is No Game</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/timeshooter3.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/timeshooter3.png');">
+            </div>
+            <div class="card-title">Time Shooter 3</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/tinyfishing.html ')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/tiny-fishing-unblocked-1.webp');"></div>
+            <div class="card-title">Tiny Fishing</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/tunnelrush.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/tunnelrush.png');">
+            </div>
+            <div class="card-title">Tunnel Rush</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/undertaleyellow.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/undertaleyellow.png');"></div>
+            <div class="card-title">Undertale Yellow</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/uno.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/uno.png');"></div>
+            <div class="card-title">UNO</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/vex6.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/vex6.png');"></div>
+            <div class="card-title">Vex 6</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/vex7.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/vex7.png');"></div>
+            <div class="card-title">Vex 7</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/volleyrandom.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/volleyrandom.png');">
+            </div>
+            <div class="card-title">Volley Random</div>
+        </div>
+         <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/wok.html ')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/randomizer0309-byte/progs-games@main/512x512bb.jpg ');"></div>
+            <div class="card-title">War of Knights</div>
+        </div>
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/wavedash.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/wavedash.png');">
+            </div>
+            <div class="card-title">Wave Dash</div>
+        </div>
+         
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/wheely.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/wheely.png');"></div>
+            <div class="card-title">Wheely</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/wordle.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/wordle.png');"></div>
+            <div class="card-title">Wordle</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/worldshardestgame.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/worldshardestgame.png');"></div>
+            <div class="card-title">World's Hardest Game</div>
+        </div>
+        
+        <div class="card" onclick="openGame(this, 'https://cdn.jsdelivr.net/gh/idoit-16/X43hkdk39p3lw3xxpro/wrestlebros.html')">
+            <div class="thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/idoit-16/gs-covers/wrestlebros.png');">
+            </div>
+            <div class="card-title">Wrestle Bros</div>
+        </div>
+
+	</div>
+
+<script>
+	async function openGame(card, url) {
+    const gameName =
+        card.querySelector(".card-title")?.textContent.trim() || "Chicken-Nugget";
+
+    const win = window.open("about:blank", "_blank");
+    if (!win) return;
+
+    // Initial loading screen
+    win.document.open();
+    win.document.write(`
+        <title>${gameName}</title>
+        <body style="margin:0;background:black;color:white;
+        display:flex;align-items:center;justify-content:center;
+        font-family:Comic Sans MS,cursive">
+            Loading ${gameName}...
+        </body>
+    `);
+    win.document.close();
+
+    // Add favicon to the new tab
+    const faviconLink = win.document.createElement("link");
+    faviconLink.rel = "icon";
+    faviconLink.href = "https://lh7-rt.googleusercontent.com/sitesz/AClOY7oK76fijM7B08O3S3a_efYugagyztbFe1II4ejTtTTc6fb1Em8oDkyDNj-CSzwRSOE0gSTRPJ4O_vjZcLrgmk6Rxss4jm3P6hS2qKsk8j3osIGdSF6CLt8oW-tW3yNd_O4TodRt9dRW2cfKDZWIDTs_D67_u95W2-mI-EwY9nMEiwleQOLORWgcxPmsuwNV?key=5BTnLur8qjcoLyMMzDfYSg";
+    win.document.head.appendChild(faviconLink);
+
+    try {
+        const res = await fetch(url);
+        const html = await res.text();
+
+        // Inject the fetched game HTML
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+
+        // Ensure the title stays correct
+        win.document.title = gameName;
+
+    } catch (e) {
+        win.document.open();
+        win.document.write(`<h2 style='color:white'>Failed to load ${gameName}</h2>`);
+        win.document.close();
+    }
+}
+
+const search = document.getElementById("search");
+const cards = Array.from(document.querySelectorAll(".card"));
+const counterBox = document.getElementById("counterBox");
+
+function updateCounter() {
+    const visible = cards.filter(c => !c.classList.contains("hide")).length;
+    counterBox.textContent = visible + " game" + (visible === 1 ? "" : "s");
+}
+
+search.addEventListener("input", () => {
+    const value = search.value.toLowerCase().trim();
+
+    cards.forEach(card => {
+        const title = (card.dataset.title || card.querySelector(".card-title")?.textContent || "").toLowerCase();
+        if (title.includes(value)) {
+            card.classList.remove("hide");
+        } else {
+            card.classList.add("hide");
+        }
+    });
+
+    updateCounter();
+});
+
+updateCounter();
+</script>
+
+
+
+</body></html
